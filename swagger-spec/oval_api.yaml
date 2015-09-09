@@ -1,0 +1,216 @@
+swagger: '2.0'
+info:
+  title: Oval API
+  description: 'An API to query race results from the [Bud Harris (Washington Blvd) Oval](http://www.acaracing.com/)'
+  version: 0.1.0
+  contact:
+    name: Jacob Yundt
+    email: jyundt@gmail.com
+  license:
+    name: GPL 2.0
+    url: 'http://www.gnu.org/licenses/gpl-2.0.txt'
+host: api.theoval.us
+schemes:
+  - http
+basePath: /v0.1
+produces:
+  - application/json
+paths:
+  /races:
+    get:
+      summary: Race information
+      description: |
+        Returns an array of Race objects for every race in the database.
+      responses:
+        '200':
+          description: 'A list of all races meeting any search criteria provided'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Race'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      parameters:
+        -
+          in: query
+          name: year
+          description: The year (series) of the races to filter
+          required: false
+          type: integer
+        -
+          in: query
+          name: category
+          description: The category of the races to filter
+          required: false
+          type: string
+        -
+          in: query
+          name: p_course
+          description: Limit searches only to races using the p_course
+          required: false
+          type: boolean
+        -
+          in: query
+          name: usac_permit
+          description: The USAC permit of the race to filter
+          required: false
+          type: string
+  /race/{race_id}:
+    get:
+      summary: Race information for a specific race
+      description: |
+        Returns information from one race
+      responses:
+        '200':
+          description: Information for one race
+          schema:
+            $ref: '#/definitions/Race'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      parameters:
+        - name: race_id
+          in: path
+          description: The ID of the individual race
+          required: true
+          type: integer
+  /categories:
+    get:
+      summary: List of race categories
+      description: |
+        Returns an array (of strings) with the list of categories. Can optionally filter by year to limit results.
+      responses:
+        '200':
+          description: A list of categories
+          schema:
+            type: array
+            items:
+              description: The name of the category
+              type: string
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      parameters:
+        -
+          in: query
+          name: year
+          description: Limit searches to specified year
+          required: false
+          type: integer
+definitions:
+  Race:
+    description: 'A JSON object that contains all of the information about a race, such as primes, riders, laps, etc.'
+    properties:
+      officials:
+        items:
+          description: The name of one of the USAC officials.
+          type: string
+        description: An array of strings listing the officials for the race.
+        type: array
+      primes:
+        description: An array of objects containing prime information.
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              description: The winner of the prime
+              type: string
+            prime:
+              description: The prime (prize)
+              type: string
+      laps:
+        description: The number of laps in the race.
+        type: integer
+      location:
+        description: The location of the race.
+        type: string
+      mar:
+        description: Array of objects containing MAR (most aggressive rider) information.
+        type: array
+        items:
+          type: object
+          properties:
+            mar_place:
+              description: 'The MAR placement (e.g. 1st, 2nd, 3rd) for the race.'
+              type: integer
+            name:
+              description: The name of the rider
+              type: string
+            team:
+              description: The team of the rider (if any).
+              type: string
+            mar_points:
+              description: MAR points received for the race (if any).
+              type: integer
+      date:
+        description: The date of the race.
+        type: string
+        format: date
+      fast_lap:
+        description: 'The time of the fastest lap in the race (MM:SS).'
+        type: string
+      avg_lap:
+        description: 'The average lap time in the race (MM:SS).'
+        type: string
+      riders:
+        description: An array of objects containing all of the information for all of the riders of this race.
+        type: array
+        items:
+          type: object
+          properties:
+            time:
+              description: The finishing time for the rider.
+              type: string
+            name:
+              description: The name of the rider.
+              type: string
+            place:
+              description: 'The finishing placement (e.g. 1st, 2nd, 3rd) of the rider for the race.'
+              type: integer
+            points:
+              description: Series points received for the race (if any).
+              type: integer
+            team:
+              description: The team of the rider (if any).
+              type: string
+            team_points:
+              description: Team series points received for the race (if any).
+              type: integer
+      usac_permit:
+        description: The USAC license number for the race.
+        type: string
+      p_course:
+        description: Was the race using the p-course?
+        type: boolean
+      weather:
+        description: The weather during the race.
+        type: string
+      starters:
+        description: The number of riders who started (but not necessarily finished) the race.
+        type: integer
+      slow_lap:
+        description: 'The slowest lap of the race (MM:SS).'
+        type: string
+      category:
+        description: 'The category of the race (e.g. A, B, C)'
+        type: string
+      marshals:
+        description: An array of strings listing the marshals for the race.
+        type: array
+        items:
+          description: The name of the marshal.
+          type: string
+  Error:
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
