@@ -27,11 +27,11 @@ paths:
           schema:
             type: array
             items:
-              : '#/definitions/Race'
+              $ref : '#/definitions/Race'
         default:
           description: Unexpected error
           schema:
-            : '#/definitions/Error'
+            $ref : '#/definitions/Error'
       parameters:
         -
           in: query
@@ -66,11 +66,11 @@ paths:
         '200':
           description: Information for one race
           schema:
-            : '#/definitions/Race'
+            $ref : '#/definitions/Race'
         default:
           description: Unexpected error
           schema:
-            : '#/definitions/Error'
+            $ref : '#/definitions/Error'
       parameters:
         - name: race_id
           in: path
@@ -88,11 +88,11 @@ paths:
           schema:
             type: array
             items:
-              : '#/definitions/Rider'
+              $ref : '#/definitions/Rider'
         default:
           description: Unexpected error
           schema:
-            : '#/definitions/Error'
+            $ref : '#/definitions/Error'
       parameters:
         -
           in: query
@@ -122,11 +122,11 @@ paths:
         '200':
           description: Information for one rider
           schema:
-            : '#/definitions/Rider'
+            $ref : '#/definitions/Rider'
         default:
           description: Unexpected error
           schema:
-            : '#/definitions/Error'
+            $ref : '#/definitions/Error'
       parameters:
         - name: rider_id
           in: path
@@ -149,7 +149,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            : '#/definitions/Error'
+            $ref : '#/definitions/Error'
       parameters:
         -
           in: query
