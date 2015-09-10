@@ -27,11 +27,11 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Race'
+              : '#/definitions/Race'
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            : '#/definitions/Error'
       parameters:
         -
           in: query
@@ -57,7 +57,7 @@ paths:
           description: The USAC permit of the race to filter
           required: false
           type: string
-  /race/{race_id}:
+  /races/{race_id}:
     get:
       summary: Race information for a specific race
       description: |
@@ -66,15 +66,71 @@ paths:
         '200':
           description: Information for one race
           schema:
-            $ref: '#/definitions/Race'
+            : '#/definitions/Race'
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            : '#/definitions/Error'
       parameters:
         - name: race_id
           in: path
           description: The ID of the individual race
+          required: true
+          type: integer
+  /riders:
+    get:
+      summary: Returns a list of all known riders
+      description: |
+        Returns an array of Rider objects for every rider in the database.
+      responses:
+        '200':
+          description: 'A list of all riders meeting any search criteria provided'
+          schema:
+            type: array
+            items:
+              : '#/definitions/Rider'
+        default:
+          description: Unexpected error
+          schema:
+            : '#/definitions/Error'
+      parameters:
+        -
+          in: query
+          name: name
+          description: The name of the riders to filter
+          required: false
+          type: string
+        -
+          in: query
+          name: usac_license
+          description: The USAC license of the riders to filter
+          required: false
+          type: integer
+        -
+          in: query
+          name: birthdate
+          description: The birthdate of the riders to filter
+          required: false
+          type: string
+          format: date
+  /riders/{rider_id}:
+    get:
+      summary: Individual rider information
+      description: |
+        Specific information about an individual rider
+      responses:
+        '200':
+          description: Information for one rider
+          schema:
+            : '#/definitions/Rider'
+        default:
+          description: Unexpected error
+          schema:
+            : '#/definitions/Error'
+      parameters:
+        - name: rider_id
+          in: path
+          description: The ID of the individual rider
           required: true
           type: integer
   /categories:
@@ -93,7 +149,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            : '#/definitions/Error'
       parameters:
         -
           in: query
@@ -105,6 +161,9 @@ definitions:
   Race:
     description: 'A JSON object that contains all of the information about a race, such as primes, riders, laps, etc.'
     properties:
+      race_id:
+        description: A unique integer index for each race.
+        type: integer
       officials:
         items:
           description: The name of one of the USAC officials.
@@ -205,6 +264,22 @@ definitions:
         items:
           description: The name of the marshal.
           type: string
+  Rider:
+    description: A JSON object that contains limited information about an individual rider.
+    properties:
+      name:
+        description: The name of the rider
+        type: string
+      usac_license:
+        description: The USAC licernse for the rider
+        type: integer
+      birthdate:
+        description: The birthdate of the rider
+        type: string
+        format: date
+      rider_id:
+        description: A unique integer index for each rider
+        type: integer
   Error:
     properties:
       code:
