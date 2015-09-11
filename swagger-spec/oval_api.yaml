@@ -157,6 +157,57 @@ paths:
           description: Limit searches to specified year
           required: false
           type: integer
+  /standings:
+    get:
+      summary: Return available standings
+      description: |
+        Returns an array of dates for which standings are available.
+      responses: 
+        200: 
+          description: A list (array) of dates for which standings are available
+          schema:
+            type: array
+            items:
+              type: string
+        default:
+          description: Unexpected error
+          schema:
+            $ref : '#/definitions/Error'
+  /standings/{year}:
+    get:
+      summary: Return standings for a specific year
+      description: |
+        Returns an array of objects
+      responses:
+        200:
+          description: A list (array) of results for a specific year which can be filtered.
+          schema:
+            type: array
+            items:
+              type: string
+        default:
+          description: Unexpected error
+          schema:
+            $ref : '#/definitions/Error'
+      parameters:
+      -
+        name: year
+        in: path
+        description: The year (season) for which results should be displayed
+        required: true
+        type: integer
+      -
+        name: category_id
+        in: query
+        description: The category ID for which results should be filtered
+        required: false
+        type: integer
+      -
+        name: team_id
+        in: query
+        description: The team ID for which results should be filtered.
+        required: false
+        type: integer
 definitions:
   Race:
     description: 'A JSON object that contains all of the information about a race, such as primes, riders, laps, etc.'
