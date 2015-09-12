@@ -1,0 +1,298 @@
+=============================
+/standings/2015/1/riders
+
+---
+-
+  rider_place: 1
+  rider_name: Dan Greene
+  rider_team: East End Cycling
+  rider_points: 76
+- 
+  rider_place: 2
+  rider_name: John Heffner
+  rider_team: CAT Racing
+  rider_points: 67
+=============================
+
+/standings/2015/1/teams
+
+---
+-
+  team_place: 2
+  team_name: GPOA
+  team_points: 93
+-
+  team_place: 3
+  team_name: CAT Racing
+  team_points: 92
+
+=============================
+
+/standings/2015/1/mar
+
+---
+-
+  mar_place: 1
+  mar_name: Shawn Litster
+  mar_team: NovaCare
+  mar_points: 19
+-
+  mar_place: 2
+  mar_name: Frankie Ross
+  mar_team: Sette Nove
+  mar_points: 15
+
+=============================
+
+
+/standings/2015/1
+
+---
+riders: 
+  -
+    rider_place: 1
+    rider_name: Dan Greene
+    rider_team: East End Cycling
+    rider_points: 76
+  - 
+    rider_place: 2
+    rider_name: John Heffner
+    rider_team: CAT Racing
+    rider_points: 67
+teams:
+  -
+    team_place: 2
+    team_name: GPOA
+    team_points: 93
+  -
+    team_place: 3
+    team_name: CAT Racing
+    team_points: 92
+mar:
+  -
+    mar_place: 1
+    mar_name: Shawn Litster
+    mar_team: NovaCare
+    mar_points: 19
+  -
+    mar_place: 2
+    mar_name: Frankie Ross
+    mar_team: Sette Nove
+    mar_points: 15
+
+=============================
+
+/standings/2015
+---
+-
+  category: A
+  category_id: 1
+  riders: 
+    -
+      rider_place: 1
+      rider_name: Dan Greene
+      rider_team: East End Cycling
+      rider_points: 76
+    - 
+      rider_place: 2
+      rider_name: John Heffner
+      rider_team: CAT Racing
+      rider_points: 67
+  teams:
+    -
+      team_place: 2
+      team_name: GPOA
+      team_points: 93
+    -
+      team_place: 3
+      team_name: CAT Racing
+      team_points: 92
+  mar:
+    -
+      mar_place: 1
+      mar_name: Shawn Litster
+      mar_team: NovaCare
+      mar_points: 19
+    -
+      mar_place: 2
+      mar_name: Frankie Ross
+      mar_team: Sette Nove
+      mar_points: 15
+-
+  category: B
+  category_id: 2
+  riders: 
+    -
+      rider_place: 1
+      rider_name: Dave Galati
+      rider_team: LaPrima Espresso
+      rider_points: 79
+    - 
+      rider_place: 2
+      rider_name: Matt Brady
+      rider_team: NovaCare
+      rider_points: 72
+  teams:
+    -
+      team_place: 1
+      team_name: LaPrima Espresso
+      team_points: 197
+    -
+      team_place: 2
+      team_name: NovaCare
+      team_points: 114
+  mar:
+    -
+      mar_place: 1
+      mar_name: Caleb Smith
+      mar_team: LaPrima Espresso
+      mar_points: 15
+    -
+      mar_place: 2
+      mar_name: Rick Holzworth
+      mar_team: LaPrima Espresso
+      mar_points: 13
+
+=============================
+
+
+/standings
+---
+2015:
+  -
+    category: A
+    category_id: 1
+    riders: 
+      -
+        rider_place: 1
+        rider_name: Dan Greene
+        rider_team: East End Cycling
+        rider_points: 76
+      - 
+        rider_place: 2
+        rider_name: John Heffner
+        rider_team: CAT Racing
+        rider_points: 67
+    teams:
+      -
+        team_place: 2
+        team_name: GPOA
+        team_points: 93
+      -
+        team_place: 3
+        team_name: CAT Racing
+        team_points: 92
+    mar:
+      -
+        mar_place: 1
+        mar_name: Shawn Litster
+        mar_team: NovaCare
+        mar_points: 19
+      -
+        mar_place: 2
+        mar_name: Frankie Ross
+        mar_team: Sette Nove
+        mar_points: 15
+  -
+    category: B
+    category_id: 2
+    riders: 
+      -
+        rider_place: 1
+        rider_name: Dave Galati
+        rider_team: LaPrima Espresso
+        rider_points: 79
+      - 
+        rider_place: 2
+        rider_name: Matt Brady
+        rider_team: NovaCare
+        rider_points: 72
+    teams:
+      -
+        team_place: 1
+        team_name: LaPrima Espresso
+        team_points: 197
+      -
+        team_place: 2
+        team_name: NovaCare
+        team_points: 114
+    mar:
+      -
+        mar_place: 1
+        mar_name: Caleb Smith
+        mar_team: LaPrima Espresso
+        mar_points: 15
+      -
+        mar_place: 2
+        mar_name: Rick Holzworth
+        mar_team: LaPrima Espresso
+        mar_points: 13
+2014:
+  -
+    category: A
+    category_id: 1
+    riders: 
+      -
+        rider_place: 1
+        rider_name: Steve Bedillion
+        rider_team: CAT Racing
+        rider_points: 66
+      - 
+        rider_place: 2
+        rider_name: Steve Cummings
+        rider_team: GPOA
+        rider_points: 51
+    teams:
+      -
+        team_place: 2
+        team_name: GPOA
+        team_points: 118
+      -
+        team_place: 3
+        team_name: NovaCare
+        team_points: 48
+    mar:
+      -
+        mar_place: 1
+        mar_name: Frankie Ross
+        mar_team: SetteNove
+        mar_points: 2
+      -
+        mar_place: 2
+        mar_name: Josh Friedman
+        mar_team: GPOA
+        mar_points: 14
+  -
+    category: B
+    category_id: 2
+    riders: 
+      -
+        rider_place: 1
+        rider_name: Shawn Geiger
+        rider_team: Dynamic Physical Therapy
+        rider_points: 70
+      - 
+        rider_place: 2
+        rider_name: Mike Quigley
+        rider_team: UPMC Cycling Performance
+        rider_points: 56
+    teams:
+      -
+        team_place: 1
+        team_name: UPMC Cycling Performance
+        team_points: 124
+      -
+        team_place: 2
+        team_name: NovaCare
+        team_points: 75
+    mar:
+      -
+        mar_place: 1
+        mar_name: Marko Milojevic
+        mar_team: NovaCare
+        mar_points: 11
+      -
+        mar_place: 2
+        mar_name: Mike Janeiro
+        mar_team: Pro Mountain Outfitters
+        mar_points: 7
