@@ -48,6 +48,8 @@
 /standings/2015/1
 
 ---
+category: A
+category_id: 1
 riders: 
   -
     rider_place: 1

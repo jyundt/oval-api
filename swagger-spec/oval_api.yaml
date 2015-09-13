@@ -180,9 +180,8 @@ paths:
         '200':
           description: 'Returns detailed information about individual, team and MAR standings for all categories in a given year'
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/YearResult'
+            type: object
+            $ref: '#/definitions/YearResult'
         default:
           description: Unexpected error
           schema:
@@ -488,6 +487,14 @@ definitions:
     description: 'A JSON object that contains information about all results (individual, team and MAR) for a given category.'
     type: object
     properties:
+      category:
+        description: The name of the category
+        type: string
+        example: A
+      category_id: 
+        description: the unique category ID for the category
+        type: integer
+        example: 1
       riders:
         description: an array of RiderResult objects
         type: array
@@ -508,30 +515,7 @@ definitions:
     type: array
     items:
       type: object
-      properties:
-        category:
-          description: The name of the category
-          type: string
-          example: A
-        category_id:
-          description: The unique category ID for the category
-          type: integer
-          example: 1
-        riders:
-          description: an array of RiderResult objects
-          type: array
-          items:
-            $ref: '#/definitions/RiderResult'
-        teams:
-          description: an array of TeamResult objects
-          type: array
-          items:
-            $ref: '#/definitions/TeamResult'
-        MAR:
-          description: an array of MARResult objects
-          type: array
-          items:
-            $ref: '#/definitions/MARResult'
+      $ref: '#/definitions/CategoryResult'
   Error:
     properties:
       code:
