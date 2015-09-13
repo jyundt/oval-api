@@ -23,36 +23,32 @@ paths:
         Returns an array of Race objects for every race in the database.
       responses:
         '200':
-          description: 'A list of all races meeting any search criteria provided'
+          description: A list of all races meeting any search criteria provided
           schema:
             type: array
             items:
-              $ref : '#/definitions/Race'
+              $ref: '#/definitions/Race'
         default:
           description: Unexpected error
           schema:
-            $ref : '#/definitions/Error'
+            $ref: '#/definitions/Error'
       parameters:
-        -
-          in: query
+        - in: query
           name: year
           description: The year (series) of the races to filter
           required: false
           type: integer
-        -
-          in: query
+        - in: query
           name: category
           description: The category of the races to filter
           required: false
           type: string
-        -
-          in: query
+        - in: query
           name: p_course
           description: Limit searches only to races using the p_course
           required: false
           type: boolean
-        -
-          in: query
+        - in: query
           name: usac_permit
           description: The USAC permit of the race to filter
           required: false
@@ -66,11 +62,11 @@ paths:
         '200':
           description: Information for one race
           schema:
-            $ref : '#/definitions/Race'
+            $ref: '#/definitions/Race'
         default:
           description: Unexpected error
           schema:
-            $ref : '#/definitions/Error'
+            $ref: '#/definitions/Error'
       parameters:
         - name: race_id
           in: path
@@ -84,30 +80,27 @@ paths:
         Returns an array of Rider objects for every rider in the database.
       responses:
         '200':
-          description: 'A list of all riders meeting any search criteria provided'
+          description: A list of all riders meeting any search criteria provided
           schema:
             type: array
             items:
-              $ref : '#/definitions/Rider'
+              $ref: '#/definitions/Rider'
         default:
           description: Unexpected error
           schema:
-            $ref : '#/definitions/Error'
+            $ref: '#/definitions/Error'
       parameters:
-        -
-          in: query
+        - in: query
           name: name
           description: The name of the riders to filter
           required: false
           type: string
-        -
-          in: query
+        - in: query
           name: usac_license
           description: The USAC license of the riders to filter
           required: false
           type: integer
-        -
-          in: query
+        - in: query
           name: birthdate
           description: The birthdate of the riders to filter
           required: false
@@ -122,11 +115,11 @@ paths:
         '200':
           description: Information for one rider
           schema:
-            $ref : '#/definitions/Rider'
+            $ref: '#/definitions/Rider'
         default:
           description: Unexpected error
           schema:
-            $ref : '#/definitions/Error'
+            $ref: '#/definitions/Error'
       parameters:
         - name: rider_id
           in: path
@@ -136,8 +129,9 @@ paths:
   /categories:
     get:
       summary: List of race categories
-      description: |
-        Returns an array (of strings) with the list of categories. Can optionally filter by year to limit results.
+      description: >
+        Returns an array (of strings) with the list of categories. Can optionally
+        filter by year to limit results.
       responses:
         '200':
           description: A list of categories
@@ -149,10 +143,9 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref : '#/definitions/Error'
+            $ref: '#/definitions/Error'
       parameters:
-        -
-          in: query
+        - in: query
           name: year
           description: Limit searches to specified year
           required: false
@@ -160,11 +153,12 @@ paths:
   /standings:
     get:
       summary: Return available standings
-      description: |
-        Returns an object of arrays of objects of array of objects (yikes) for ALL categories for ALL seasons.
-      responses: 
-        200: 
-          description: Returns detailed information about individual, team and MAR standings for all categories for all years
+      description: >
+        Returns an object of arrays of objects of array of objects (yikes) for
+        ALL categories for ALL seasons.
+      responses:
+        '200':
+          description: 'Returns detailed information about individual, team and MAR standings for all categories for all years'
           schema:
             type: object
             properties:
@@ -175,15 +169,16 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref : '#/definitions/Error'
+            $ref: '#/definitions/Error'
   /standings/{year}:
     get:
-      summary: Individual, team and MAR standings for ALL categories for one year
-      description: |
-       Returns an array of objects of arrays of objects (yikes) for ALL categories available on year.
+      summary: 'Individual, team and MAR standings for ALL categories for one year'
+      description: >
+        Returns an array of objects of arrays of objects (yikes) for ALL
+        categories available on year.
       responses:
-        200:
-          description: Returns detailed information about individual, team and MAR standings for all categories in a given year
+        '200':
+          description: 'Returns detailed information about individual, team and MAR standings for all categories in a given year'
           schema:
             type: array
             items:
@@ -191,7 +186,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref : '#/definitions/Error'
+            $ref: '#/definitions/Error'
       parameters:
         - name: year
           in: path
@@ -200,19 +195,20 @@ paths:
           type: integer
   /standings/{year}/{category_id}:
     get:
-      summary: Individual, team and MAR standings for one category and one year
-      description: |
-        Returns an object of objects (of arrays) with detailed information about individual, team and MAR standings for one category and one year.
+      summary: 'Individual, team and MAR standings for one category and one year'
+      description: >
+        Returns an object of objects (of arrays) with detailed information about
+        individual, team and MAR standings for one category and one year.
       responses:
-        200:
-          description: Returns detailed information about individual, team and MAR standings.
+        '200':
+          description: 'Returns detailed information about individual, team and MAR standings.'
           schema:
             type: object
             $ref: '#/definitions/CategoryResult'
         default:
           description: Unexpected error
           schema:
-            $ref : '#/definitions/Error'
+            $ref: '#/definitions/Error'
       parameters:
         - name: year
           in: path
@@ -230,7 +226,7 @@ paths:
       description: |
         Returns an array of objects containing detailed rider information.
       responses:
-        200: 
+        '200':
           description: Information for one race
           schema:
             type: array
@@ -239,7 +235,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref : '#/definitions/Error'
+            $ref: '#/definitions/Error'
       parameters:
         - name: year
           in: path
@@ -257,7 +253,7 @@ paths:
       description: |
         Returns an array of objects containing detailed team information.
       responses:
-        200: 
+        '200':
           description: Information for one race
           schema:
             type: array
@@ -266,7 +262,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref : '#/definitions/Error'
+            $ref: '#/definitions/Error'
       parameters:
         - name: year
           in: path
@@ -284,7 +280,7 @@ paths:
       description: |
         Returns an array of objects containing detailed MAR information.
       responses:
-        200: 
+        '200':
           description: Information for one race
           schema:
             type: array
@@ -293,7 +289,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref : '#/definitions/Error'
+            $ref: '#/definitions/Error'
       parameters:
         - name: year
           in: path
@@ -418,16 +414,20 @@ definitions:
       name:
         description: The name of the rider
         type: string
+        example: Jacob Yundt
       usac_license:
         description: The USAC licernse for the rider
         type: integer
+        example: 277281
       birthdate:
         description: The birthdate of the rider
         type: string
         format: date
+        example: 1986-01-27
       rider_id:
         description: A unique integer index for each rider
         type: integer
+        example: 1
   RiderResult:
     description: A JSON object that contains information about one result. This would typically appear in an array of RiderResult objects to create a result for a season or race.
     type: object
@@ -435,15 +435,19 @@ definitions:
       rider_place:
         description: The place (e.g. rank) of the rider
         type: integer
+        example: 14
       rider_name:
         description: The name of the rider
         type: string
+        example: Jacob Yundt
       rider_team:
         description: The team of the rider
         type: string
+        example: CAT Racing
       rider_points:
         description: The points of the rider
         type: integer
+        example: 10
   TeamResult:
     description: A JSON object that contains information about one result for a team. This would typically appear in an array of TeamResult objects to create a result for a season or race.
     type: object
@@ -451,12 +455,15 @@ definitions:
       team_place:
         description: The place (e.g. rank) of the team
         type: integer
+        example: 3
       team_name:
         description: The name of the team
         type: string
+        example: CAT Racing
       team_points:
         description: The points of the team
         type: integer
+        example: 92
   MARResult:
     description: A JSON object that contains information about one MAR result. This would typically appear in an array of MARResult objects to create a result for a season or race.
     type: object
@@ -464,17 +471,21 @@ definitions:
       mar_place:
         description: The place (e.g. rank) of the MAR rider
         type: integer
+        example: 1
       mar_name:
         description: The name of the MAR rider
         type: string
+        example: Shawn Litster
       mar_team:
         description: The team of the MAR rider
         type: string
+        example: NovaCare
       mar_points:
         description: The points of the MAR rider
         type: integer
+        example: 19
   CategoryResult:
-    description: A JSON object that contains information about all results (individual, team and MAR) for a given category.
+    description: 'A JSON object that contains information about all results (individual, team and MAR) for a given category.'
     type: object
     properties:
       riders:
@@ -493,17 +504,19 @@ definitions:
         items:
           $ref: '#/definitions/MARResult'
   YearResult:
-    description: A JSON object that contains information about all results (individual, team and MAR) for all categories for a given year.
+    description: 'A JSON object that contains information about all results (individual, team and MAR) for all categories for a given year.'
     type: array
-    items: 
+    items:
       type: object
       properties:
         category:
           description: The name of the category
           type: string
+          example: A
         category_id:
           description: The unique category ID for the category
           type: integer
+          example: 1
         riders:
           description: an array of RiderResult objects
           type: array
@@ -528,3 +541,4 @@ definitions:
         type: string
       fields:
         type: string
+
