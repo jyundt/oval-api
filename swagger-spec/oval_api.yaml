@@ -307,12 +307,16 @@ definitions:
       race_id:
         description: A unique integer index for each race.
         type: integer
+        example: 1
       officials:
         items:
           description: The name of one of the USAC officials.
           type: string
         description: An array of strings listing the officials for the race.
         type: array
+        example:
+          - Kurt Kearcher
+          - Nikki Berrian
       primes:
         description: An array of objects containing prime information.
         type: array
@@ -322,15 +326,19 @@ definitions:
             name:
               description: The winner of the prime
               type: string
+              example: Morgan Baker
             prime:
               description: The prime (prize)
               type: string
+              example: Point Prime
       laps:
         description: The number of laps in the race.
         type: integer
+        example: 40
       location:
         description: The location of the race.
         type: string
+        example: Bud Harris Bike Park
       mar:
         description: Array of objects containing MAR (most aggressive rider) information.
         type: array
@@ -340,25 +348,32 @@ definitions:
             mar_place:
               description: 'The MAR placement (e.g. 1st, 2nd, 3rd) for the race.'
               type: integer
+              example: 1
             name:
               description: The name of the rider
               type: string
+              example: Frankie Ross
             team:
               description: The team of the rider (if any).
               type: string
+              example: Sette Nove
             mar_points:
               description: MAR points received for the race (if any).
               type: integer
+              example: 3
       date:
         description: The date of the race.
         type: string
         format: date
+        example: 2015-08-26
       fast_lap:
         description: 'The time of the fastest lap in the race (MM:SS).'
         type: string
+        example: "0:59"
       avg_lap:
         description: 'The average lap time in the race (MM:SS).'
         type: string
+        example: "1:08"
       riders:
         description: An array of objects containing all of the information for all of the riders of this race.
         type: array
@@ -368,39 +383,51 @@ definitions:
             time:
               description: The finishing time for the rider.
               type: string
+              example: "45:23"
             name:
               description: The name of the rider.
               type: string
+              example: "John Heffner"
             place:
               description: 'The finishing placement (e.g. 1st, 2nd, 3rd) of the rider for the race.'
               type: integer
+              example: "1"
             points:
               description: Series points received for the race (if any).
               type: integer
+              example: 10
             team:
               description: The team of the rider (if any).
               type: string
+              example: "CAT Racing"
             team_points:
               description: Team series points received for the race (if any).
               type: integer
+              example: 10
       usac_permit:
         description: The USAC license number for the race.
         type: string
+        example: 2015-618
       p_course:
         description: Was the race using the p-course?
         type: boolean
+        example: false
       weather:
         description: The weather during the race.
         type: string
+        example: "68 °F, cool, cloudy"
       starters:
         description: The number of riders who started (but not necessarily finished) the race.
         type: integer
+        example: 25
       slow_lap:
         description: 'The slowest lap of the race (MM:SS).'
         type: string
+        example: "1:14"
       category:
         description: 'The category of the race (e.g. A, B, C)'
         type: string
+        example: A
       marshals:
         description: An array of strings listing the marshals for the race.
         type: array
