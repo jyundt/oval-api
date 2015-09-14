@@ -391,12 +391,10 @@ definitions:
   RiderStandings:
     description: A JSON object containing nested objects of multiple years and multiple categories for individual rider standings (results).
     type: object
-    properties:
-      {year}:
+    additionalProperties:
         description: The year of the standings (results)
         type: object
-        properties:
-          {category}: 
+        additionalProperties:
             description: The category of the standings (results)
             type: array
             items:
