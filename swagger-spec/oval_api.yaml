@@ -53,7 +53,7 @@ paths:
           description: The USAC permit of the race to filter
           required: false
           type: string
-  /races/{race_id}:
+  '/races/{race_id}':
     get:
       summary: Race information for a specific race
       description: |
@@ -106,7 +106,7 @@ paths:
           required: false
           type: string
           format: date
-  /riders/{rider_id}:
+  '/riders/{rider_id}':
     get:
       summary: Individual rider information
       description: |
@@ -150,156 +150,91 @@ paths:
           description: Limit searches to specified year
           required: false
           type: integer
-  /standings:
+  /rider_standings:
     get:
-      summary: Return available standings
-      description: >
-        Returns an object of arrays of objects of array of objects (yikes) for
-        ALL categories for ALL seasons.
+      summary: Individual rider standings (results)
+      description: |
+        Returns a JSON object with overall individual season standings with the option to limit results based on year or category.
       responses:
-        '200':
-          description: 'Returns detailed information about individual, team and MAR standings for all categories for all years'
+        200:
+          description: Returns nested JSON objects by year, then by category for individual rider standings.
           schema:
             type: object
-            properties:
-              year:
-                type: array
-                items:
-                  $ref: '#/definitions/YearResult'
+            $ref: '#/definitions/RiderStandings'
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-  /standings/{year}:
+      parameters:
+        -
+          in: query
+          name: year
+          description: The year (series) of the standings to filter
+          required: false
+          type: integer
+        -
+          in: query
+          name: category_id
+          description: The category ID of the standings to filter
+          required: false
+          type: integer
+  /team_standings:
     get:
-      summary: 'Individual, team and MAR standings for ALL categories for one year'
-      description: >
-        Returns an array of objects of arrays of objects (yikes) for ALL
-        categories available on year.
+      summary: Team standings (results)
+      description: |
+        Returns a JSON object with overall team season standings with the option to limit results based on year or category.
       responses:
-        '200':
-          description: 'Returns detailed information about individual, team and MAR standings for all categories in a given year'
+        200:
+          description: Returns nested JSON objects by year, then by category for team standings.
           schema:
             type: object
-            $ref: '#/definitions/YearResult'
+            $ref: '#/definitions/TeamStandings'
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
       parameters:
-        - name: year
-          in: path
-          description: The year (season) for which results should be displayed
-          required: true
+        -
+          in: query
+          name: year
+          description: The year (series) of the standings to filter
+          required: false
           type: integer
-  /standings/{year}/{category_id}:
+        -
+          in: query
+          name: category_id
+          description: The category ID of the standings to filter
+          required: false
+          type: integer
+  /mar_standings:
     get:
-      summary: 'Individual, team and MAR standings for one category and one year'
-      description: >
-        Returns an object of objects (of arrays) with detailed information about
-        individual, team and MAR standings for one category and one year.
+      summary: MAR standings (results)
+      description: |
+        Returns a JSON object with overall MAR season standings with the option to limit results based on year or category.
       responses:
-        '200':
-          description: 'Returns detailed information about individual, team and MAR standings.'
+        200:
+          description: Returns nested JSON objects by year, then by category for MAR standings.
           schema:
             type: object
-            $ref: '#/definitions/CategoryResult'
+            $ref: '#/definitions/MARStandings'
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
       parameters:
-        - name: year
-          in: path
-          description: The year of the result
-          required: true
+        -
+          in: query
+          name: year
+          description: The year (series) of the standings to filter
+          required: false
           type: integer
-        - name: category_id
-          in: path
-          description: The category ID (NOT category name) of the result
-          required: true
+        -
+          in: query
+          name: category_id
+          description: The category ID of the standings to filter
+          required: false
           type: integer
-  /standings/{year}/{category_id}/riders:
-    get:
-      summary: Individual rider standings for one category and one year
-      description: |
-        Returns an array of objects containing detailed rider information.
-      responses:
-        '200':
-          description: Information for one race
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RiderResult'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
-      parameters:
-        - name: year
-          in: path
-          description: The year of the result
-          required: true
-          type: integer
-        - name: category_id
-          in: path
-          description: The category ID (NOT category name) of the result
-          required: true
-          type: integer
-  /standings/{year}/{category_id}/teams:
-    get:
-      summary: Team standings for one category and one year
-      description: |
-        Returns an array of objects containing detailed team information.
-      responses:
-        '200':
-          description: Information for one race
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/TeamResult'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
-      parameters:
-        - name: year
-          in: path
-          description: The year of the result
-          required: true
-          type: integer
-        - name: category_id
-          in: path
-          description: The category ID (NOT category name) of the result
-          required: true
-          type: integer
-  /standings/{year}/{category_id}/mar:
-    get:
-      summary: MAR standings for one category and one year
-      description: |
-        Returns an array of objects containing detailed MAR information.
-      responses:
-        '200':
-          description: Information for one race
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/MARResult'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
-      parameters:
-        - name: year
-          in: path
-          description: The year of the result
-          required: true
-          type: integer
-        - name: category_id
-          in: path
-          description: The category ID (NOT category name) of the result
-          required: true
-          type: integer
+    
 definitions:
   Race:
     description: 'A JSON object that contains all of the information about a race, such as primes, riders, laps, etc.'
@@ -365,15 +300,15 @@ definitions:
         description: The date of the race.
         type: string
         format: date
-        example: 2015-08-26
+        example: 2015-08-26T00:00:00.000Z
       fast_lap:
         description: 'The time of the fastest lap in the race (MM:SS).'
         type: string
-        example: "0:59"
+        example: '0:59'
       avg_lap:
         description: 'The average lap time in the race (MM:SS).'
         type: string
-        example: "1:08"
+        example: '1:08'
       riders:
         description: An array of objects containing all of the information for all of the riders of this race.
         type: array
@@ -383,15 +318,15 @@ definitions:
             time:
               description: The finishing time for the rider.
               type: string
-              example: "45:23"
+              example: '45:23'
             name:
               description: The name of the rider.
               type: string
-              example: "John Heffner"
+              example: John Heffner
             place:
               description: 'The finishing placement (e.g. 1st, 2nd, 3rd) of the rider for the race.'
               type: integer
-              example: "1"
+              example: '1'
             points:
               description: Series points received for the race (if any).
               type: integer
@@ -399,7 +334,7 @@ definitions:
             team:
               description: The team of the rider (if any).
               type: string
-              example: "CAT Racing"
+              example: CAT Racing
             team_points:
               description: Team series points received for the race (if any).
               type: integer
@@ -415,7 +350,7 @@ definitions:
       weather:
         description: The weather during the race.
         type: string
-        example: "68 °F, cool, cloudy"
+        example: '68 °F, cool, cloudy'
       starters:
         description: The number of riders who started (but not necessarily finished) the race.
         type: integer
@@ -423,7 +358,7 @@ definitions:
       slow_lap:
         description: 'The slowest lap of the race (MM:SS).'
         type: string
-        example: "1:14"
+        example: '1:14'
       category:
         description: 'The category of the race (e.g. A, B, C)'
         type: string
@@ -449,7 +384,7 @@ definitions:
         description: The birthdate of the rider
         type: string
         format: date
-        example: 1986-01-27
+        example: 1986-01-27T00:00:00.000Z
       rider_id:
         description: A unique integer index for each rider
         type: integer
@@ -510,39 +445,51 @@ definitions:
         description: The points of the MAR rider
         type: integer
         example: 19
-  CategoryResult:
-    description: 'A JSON object that contains information about all results (individual, team and MAR) for a given category.'
+  RiderStandings:
+    description: A JSON object containing nested objects of multiple years and multiple categories for individual rider standings (results).
     type: object
     properties:
-      category:
-        description: The name of the category
-        type: string
-        example: A
-      category_id: 
-        description: the unique category ID for the category
-        type: integer
-        example: 1
-      riders:
-        description: an array of RiderResult objects
-        type: array
-        items:
-          $ref: '#/definitions/RiderResult'
-      teams:
-        description: an array of TeamResult objects
-        type: array
-        items:
-          $ref: '#/definitions/TeamResult'
-      MAR:
-        description: an array of MARResult objects
-        type: array
-        items:
-          $ref: '#/definitions/MARResult'
-  YearResult:
-    description: 'A JSON object that contains information about all results (individual, team and MAR) for all categories for a given year.'
-    type: array
-    items:
-      type: object
-      $ref: '#/definitions/CategoryResult'
+      year:
+        description: The year of the standings (results)
+        type: object
+        example: 2015
+        properties:
+          category: 
+            description: The category of the standings (results)
+            type: array
+            example: A
+            items:
+              $ref: '#/definitions/RiderResult'
+  TeamStandings:
+    description: A JSON object containing nested objects of multiple years and multiple categories for team standings (results).
+    type: object
+    properties:
+      year:
+        description: The year of the standings (results)
+        type: object
+        example: 2015
+        properties:
+          category: 
+            description: The category of the standings (results)
+            type: array
+            example: A
+            items:
+              $ref: '#/definitions/TeamResult'
+  MARStandings:
+    description: A JSON object containing nested objects of multiple years and multiple categories for MAR standings (results).
+    type: object
+    properties:
+      year:
+        description: The year of the standings (results)
+        type: object
+        example: 2015
+        properties:
+          category: 
+            description: The category of the standings (results)
+            type: array
+            example: A
+            items:
+              $ref: '#/definitions/MARResult'
   Error:
     properties:
       code:
