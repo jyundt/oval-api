@@ -392,19 +392,13 @@ definitions:
     description: A JSON object containing nested objects of multiple years and multiple categories for individual rider standings (results).
     type: object
     properties:
-      year:
+      {year}:
         description: The year of the standings (results)
         type: object
-        additionalProperties:
-          type: integer
-          example: 2015
         properties:
-          category: 
+          {category}: 
             description: The category of the standings (results)
             type: array
-            additionalProperties:
-              type: string
-              example: A
             items:
               $ref: '#/definitions/RiderResult'
   Error:
