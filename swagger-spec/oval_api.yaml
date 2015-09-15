@@ -192,7 +192,7 @@ paths:
           schema:
             type: object
             properties:
-              mar_standings:
+              team_standings:
                 $ref: '#/definitions/TeamStandings'
         default:
           description: Unexpected error
