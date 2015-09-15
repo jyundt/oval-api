@@ -533,7 +533,7 @@ definitions:
           type: integer
           description: The year (season) of the race standings (result).
           example: 2015
-        teams:
+        mar:
           type: array
           items:
             $ref: '#/definitions/MARResult'
