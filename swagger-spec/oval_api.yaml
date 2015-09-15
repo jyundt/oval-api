@@ -130,7 +130,9 @@ paths:
     get:
       summary: List of race categories
       description: >
-        Returns a JSON object (wrapper) that contains an array (of strings) with the list of categories. Can optionally filter based on year to limit results.
+        Returns a JSON object (wrapper) that contains an array (of JSON objects) with
+        the list of categories. Can optionally filter based on year to limit
+        results.
       responses:
         '200':
           description: An object that contains the list of categories
@@ -182,8 +184,8 @@ paths:
     get:
       summary: Team standings (results)
       description: >
-        Returns a JSON object with overall team season standings with the
-        option to limit results based on year or category.
+        Returns a JSON object with overall team season standings with the option
+        to limit results based on year or category.
       responses:
         '200':
           description: 'Returns nested JSON objects by year, then by category for team standings.'
@@ -211,8 +213,8 @@ paths:
     get:
       summary: MAR standings (results)
       description: >
-        Returns a JSON object with overall MAR season standings with the
-        option to limit results based on year or category.
+        Returns a JSON object with overall MAR season standings with the option
+        to limit results based on year or category.
       responses:
         '200':
           description: 'Returns nested JSON objects by year, then by category for MAR standings.'
@@ -238,15 +240,25 @@ paths:
           type: integer
 definitions:
   Categories:
-    description: An array (list) of all race categories.
+    description: An array (list) of JSON objects containing race categories.
     type: array
     items:
-      type: string
-      example: A
+      description: JSON objects with category information
+      type: object
+      properties:
+        category:
+          type: string
+          example: A
+        category_id:
+          type: integer
+          example: 1
     example:
-     - A
-     - B
-     - C
+      -
+        category: A
+        category_id: 1
+      -
+        category: B
+        category_id: 2
   Race:
     description: 'A JSON object that contains all of the information about a race, such as primes, riders, laps, etc.'
     properties:
@@ -457,12 +469,11 @@ definitions:
         type: integer
         example: 19
   RiderStandings:
-    description: An array of JSON object containing category, category_id and year information in addition to an array of RiderResult objects.
-    type: array
     description: Top level array containing individual RiderResult objects.
+    type: array
     items:
       type: object
-      description: Object with category, category_id, year and individual rider information.
+      description: 'Object with category, category_id, year and individual rider information.'
       properties:
         category:
           type: string
@@ -481,12 +492,11 @@ definitions:
           items:
             $ref: '#/definitions/RiderResult'
   TeamStandings:
-    description: An array of JSON object containing category, category_id and year information in addition to an array of TeamResult objects.
-    type: array
     description: Top level array containing individual Team objects.
+    type: array
     items:
       type: object
-      description: Object with category, category_id, year and team information.
+      description: 'Object with category, category_id, year and team information.'
       properties:
         category:
           type: string
@@ -505,12 +515,11 @@ definitions:
           items:
             $ref: '#/definitions/TeamResult'
   MARStandings:
-    description: An array of JSON object containing category, category_id and year information in addition to an array of MarResult objects.
-    type: array
     description: Top level array containing individual MAR objects.
+    type: array
     items:
       type: object
-      description: Object with category, category_id, year and MAR information.
+      description: 'Object with category, category_id, year and MAR information.'
       properties:
         category:
           type: string
