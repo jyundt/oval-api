@@ -518,3 +518,245 @@ mar:
       rider_team: NovaCare
       rider_points: 52
       
+#### API 3.0
+####
+####
+#### another stab after talking to Bill
+####
+=============================
+/rider_standings?year=2015&category_id=1
+---
+-
+  category_id: 1
+  category: A
+  year: 2015
+  riders:
+    - 
+      rider_place: 1
+      rider_name: Dan Greene
+      rider_team: East End Cycling
+      rider_points: 76
+    - 
+      rider_place: 2
+      rider_name: John Heffner
+      rider_team: CAT Racing
+      rider_points: 67
+    -
+      rider_place: 3
+      rider_name: Steve Cummings
+      rider_team: GPOA
+      rider_points: 60
+    -
+      rider_place: 4
+      rider_name: Morgan Baker
+      rider_team: NovaCare
+      rider_points: 58
+=============================
+/rider_standings?year=2015
+---
+-
+  category_id: 1
+  category: A
+  year: 2015
+  riders:
+    - 
+      rider_place: 1
+      rider_name: Dan Greene
+      rider_team: East End Cycling
+      rider_points: 76
+    - 
+      rider_place: 2
+      rider_name: John Heffner
+      rider_team: CAT Racing
+      rider_points: 67
+    -
+      rider_place: 3
+      rider_name: Steve Cummings
+      rider_team: GPOA
+      rider_points: 60
+    -
+      rider_place: 4
+      rider_name: Morgan Baker
+      rider_team: NovaCare
+      rider_points: 58
+-
+  category_id: 2
+  category: B
+  year: 2015
+  riders: 
+    -
+      rider_place: 1
+      rider_name: Dave Galati
+      rider_team: LaPrima Espresso
+      rider_points: 79
+    - 
+      rider_place: 2
+      rider_name: Matt Brady
+      rider_team: NovaCare
+      rider_points: 72
+    -
+      rider_place: 3
+      rider_name: Mike Janeiro
+      rider_team: LaPrima Espresso
+      rider_points: 64
+    -
+      rider_place: 4
+      rider_name: Willem deBoer
+      rider_team: UPMC Cycling Performance
+      rider_points: 58
+=============================
+/rider_standings?category_id=1
+---
+-
+  category_id: 1
+  category: A
+  year: 2015
+  riders:
+    - 
+      rider_place: 1
+      rider_name: Dan Greene
+      rider_team: East End Cycling
+      rider_points: 76
+    - 
+      rider_place: 2
+      rider_name: John Heffner
+      rider_team: CAT Racing
+      rider_points: 67
+    -
+      rider_place: 3
+      rider_name: Steve Cummings
+      rider_team: GPOA
+      rider_points: 60
+    -
+      rider_place: 4
+      rider_name: Morgan Baker
+      rider_team: NovaCare
+      rider_points: 58
+-
+  category_id: 1
+  category: A
+  year: 2014
+  riders:
+    -
+      rider_place: 1
+      rider_name: Steve Bedilion
+      rider_team: CAT Racing
+      rider_points: 66
+    - 
+      rider_place: 2
+      rider_name: Steve Cummings
+      rider_team: GPOA
+      rider_points: 51
+    -
+      rider_place: 3
+      rider_name: John Cotter
+      rider_team: NovaCare
+      rider_points: 43
+    -
+      rider_place: 4
+      rider_name: Dan Greene
+      rider_team: Iron City Bikes
+      rider_points: 37
+=============================
+/rider_standings
+---
+-
+  category_id: 1
+  category: A
+  year: 2015
+  riders:
+    - 
+      rider_place: 1
+      rider_name: Dan Greene
+      rider_team: East End Cycling
+      rider_points: 76
+    - 
+      rider_place: 2
+      rider_name: John Heffner
+      rider_team: CAT Racing
+      rider_points: 67
+    -
+      rider_place: 3
+      rider_name: Steve Cummings
+      rider_team: GPOA
+      rider_points: 60
+    -
+      rider_place: 4
+      rider_name: Morgan Baker
+      rider_team: NovaCare
+      rider_points: 58
+-
+  category_id: 1
+  category: A
+  year: 2014
+  riders:
+    -
+      rider_place: 1
+      rider_name: Steve Bedilion
+      rider_team: CAT Racing
+      rider_points: 66
+    - 
+      rider_place: 2
+      rider_name: Steve Cummings
+      rider_team: GPOA
+      rider_points: 51
+    -
+      rider_place: 3
+      rider_name: John Cotter
+      rider_team: NovaCare
+      rider_points: 43
+    -
+      rider_place: 4
+      rider_name: Dan Greene
+      rider_team: Iron City Bikes
+      rider_points: 37
+-
+  category_id: 2
+  category: B
+  year: 2015
+  riders: 
+    -
+      rider_place: 1
+      rider_name: Dave Galati
+      rider_team: LaPrima Espresso
+      rider_points: 79
+    - 
+      rider_place: 2
+      rider_name: Matt Brady
+      rider_team: NovaCare
+      rider_points: 72
+    -
+      rider_place: 3
+      rider_name: Mike Janeiro
+      rider_team: LaPrima Espresso
+      rider_points: 64
+    -
+      rider_place: 4
+      rider_name: Willem deBoer
+      rider_team: UPMC Cycling Performance
+      rider_points: 58
+-
+  category_id: 2
+  category: B
+  year: 2014
+  riders:
+    -
+      rider_place: 1
+      rider_name: Shawn Geiger
+      rider_team: Dynamic Physical Therapy
+      rider_points: 70
+    - 
+      rider_place: 2
+      rider_name: Mike Quigley
+      rider_team: UPMC Cycling Performance
+      rider_points: 56
+    -
+      rider_place: 3
+      rider_name: Willem deBoer
+      rider_team: UPMC Cycling Performance
+      rider_points: 55
+    -
+      rider_place: 4
+      rider_name: Marko Milojevic
+      rider_team: NovaCare
+      rider_points: 52

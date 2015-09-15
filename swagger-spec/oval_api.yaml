@@ -153,27 +153,28 @@ paths:
   /rider_standings:
     get:
       summary: Individual rider standings (results)
-      description: |
-        Returns a JSON object with overall individual season standings with the option to limit results based on year or category.
+      description: >
+        Returns a JSON object with overall individual season standings with the
+        option to limit results based on year or category.
       responses:
-        200:
-          description: Returns nested JSON objects by year, then by category for individual rider standings.
+        '200':
+          description: 'Returns nested JSON objects by year, then by category for individual rider standings.'
           schema:
             type: object
-            $ref: '#/definitions/RiderStandings'
+            properties:
+              RiderStandings:
+                $ref: '#/definitions/RiderStandings'
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
       parameters:
-        -
-          in: query
+        - in: query
           name: year
           description: The year (series) of the standings to filter
           required: false
           type: integer
-        -
-          in: query
+        - in: query
           name: category_id
           description: The category ID of the standings to filter
           required: false
@@ -389,16 +390,29 @@ definitions:
         type: integer
         example: 19
   RiderStandings:
-    description: A JSON object containing nested objects of multiple years and multiple categories for individual rider standings (results).
-    type: object
-    additionalProperties:
-        description: The year of the standings (results)
-        type: object
-        additionalProperties:
-            description: The category of the standings (results)
-            type: array
-            items:
-              $ref: '#/definitions/RiderResult'
+    description: An array of JSON object containing category, category_id and year information in addition to an array of RiderResult objects.
+    type: array
+    description: Top level of array containing individual RiderResult objects.
+    items:
+      type: object
+      description: Object with category, category_id, year and individual rider information.
+      properties:
+        category:
+          type: string
+          description: The race category of the standings (results)
+          example: A
+        category_id:
+          type: integer
+          description: The unique category ID number of the race category.
+          example: 1
+        year:
+          type: integer
+          description: The year (season) of the race standings (result).
+          example: 2015
+        riders:
+          type: array
+          items:
+            $ref: '#/definitions/RiderResult'
   Error:
     properties:
       code:
