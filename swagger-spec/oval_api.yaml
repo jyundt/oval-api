@@ -20,14 +20,18 @@ paths:
     get:
       summary: Race information
       description: |
-        Returns an array of Race objects for every race in the database.
+        Returns a JSON object containing an array of Race objects for every race in the database.
       responses:
         '200':
           description: A list of all races meeting any search criteria provided
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Race'
+            description: Top level JSON object containing an array of race objects
+            type: object
+            properties:
+              races:
+                type: array
+                items:
+                  $ref: '#/definitions/Race'
         default:
           description: Unexpected error
           schema:
