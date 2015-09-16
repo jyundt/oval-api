@@ -19,8 +19,9 @@ paths:
   /races:
     get:
       summary: Race information
-      description: |
-        Returns a JSON object containing an array of Race objects for every race in the database.
+      description: >
+        Returns a JSON object containing an array of Race objects for every race
+        in the database.
       responses:
         '200':
           description: A list of all races meeting any search criteria provided
@@ -43,10 +44,10 @@ paths:
           required: false
           type: integer
         - in: query
-          name: category
+          name: category_id
           description: The category of the races to filter
           required: false
-          type: string
+          type: integer
         - in: query
           name: p_course
           description: Limit searches only to races using the p_course
@@ -134,8 +135,8 @@ paths:
     get:
       summary: List of race categories
       description: >
-        Returns a JSON object (wrapper) that contains an array (of JSON objects) with
-        the list of categories. Can optionally filter based on year to limit
+        Returns a JSON object (wrapper) that contains an array (of JSON objects)
+        with the list of categories. Can optionally filter based on year to limit
         results.
       responses:
         '200':
@@ -145,6 +146,29 @@ paths:
             properties:
               categories:
                 $ref: '#/definitions/Categories'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      parameters:
+        - in: query
+          name: year
+          description: Limit searches to specified year
+          required: false
+          type: integer
+  /years:
+    get:
+      summary: List of years (seasons)
+      description: >
+        Returns a JSON object (wrapper) that contains an array of years for which results are available.
+      responses:
+        '200':
+          description: An object that contains the list of years (seasons)
+          schema:
+            type: object
+            properties:
+              years:
+                $ref: '#/definitions/Years'
         default:
           description: Unexpected error
           schema:
@@ -257,12 +281,21 @@ definitions:
           type: integer
           example: 1
     example:
-      -
-        category: A
+      - category: A
         category_id: 1
-      -
-        category: B
+      - category: B
         category_id: 2
+  Years:
+    description: An array (list) of years for which results are available.
+    type: array
+    items:
+      description: Year for which results are available
+      type: integer
+      example: 2015
+    example:
+      - 2015
+      - 2014
+      - 1996
   Race:
     description: 'A JSON object that contains all of the information about a race, such as primes, riders, laps, etc.'
     properties:
